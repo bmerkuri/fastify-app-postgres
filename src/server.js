@@ -6,10 +6,31 @@ const app = build(
     exposeRoute: true,
     routePrefix: "/docs",
     swagger: { info: { title: "Fastfify Swagger API", version: "1.0.1" } },
+  },{
+    connectionString : "postgres:// postgres:postgres@localhost:5432/postgres"
+
   }
 );
+app.get('/time',(req,reply)=>{
+  app.pg.connect(onConnect)
 
-app.listen(3000, function (err, address) {
+   function onConnect(err,client,release){
+
+     if(err)return reply.send(err)
+
+    client.query(
+       'SELECT now()',
+       function onResult(err,result){
+         release()
+         reply.send(err || result.rows[0])
+       }
+    )
+  }
+})
+
+
+
+app.listen({port:3000}, function (err, address) {
   if (err) {
     app.log.error(err);
     process.exit(1);
