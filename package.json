@@ -4,10 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "start": "node src/server",
     "dev": "nodemon src/server",
     "test": "jest --coverage --runInBand",
     "test:watch": "jest --watchAll"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   },
   "keywords": [],
   "author": "",
@@ -21,5 +38,8 @@
     "jest": "^28.1.1",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0"
   }
 }
