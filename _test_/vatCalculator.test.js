@@ -21,4 +21,54 @@ describe("VAT calculator", ()=>{
         //assert
         expect(result).toBe(16.67)
     })
+    test("Should delete an item", async () => {
+
+        const response = await app.inject({
+    
+          method: "DELETE",
+    
+          url: "/v2/items/6",
+    
+        });
+    
+    
+    
+        expect(response.statusCode).toBe(200);
+    
+        expect(response.json()).toMatchObject({
+    
+          message: "Item 6 deleted succesfully!",
+    
+        });
+    
+      });
+
+      test("Should update an item", async () => {
+
+        const item = {
+    
+          name: "Updated name",
+    
+          description: "Go to park",
+    
+        };
+    
+        const response = await app.inject({
+    
+          method: "PUT",
+    
+          url: "/v2/items/5",
+    
+          payload: item,
+    
+        });
+    
+    
+    
+        expect(response.statusCode).toBe(200);
+    
+        expect(response.json()).toEqual(expect.objectContaining(item));
+    
+      });
+      
 })

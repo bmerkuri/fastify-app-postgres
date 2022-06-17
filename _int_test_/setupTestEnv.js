@@ -10,10 +10,6 @@ const insertFakeItemSQl =
     "INSERT INTO items (name,description,gross_amount,net_amount,excluded_vat_amount) VALUES ($1,$2,$3,$4,$5)";
 
 
-
-
-
-
 module.exports = function setupTestEnv() {
     const app = build({ logger: true },
         {},
