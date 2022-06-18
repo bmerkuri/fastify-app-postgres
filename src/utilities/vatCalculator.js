@@ -1,3 +1,4 @@
+
 const vatCalculator = {
     calculateVAT : (netAmount)=>{
             return Math.round((netAmount * 0.29) * 1e2)/1e2

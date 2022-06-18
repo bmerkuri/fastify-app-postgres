@@ -1,25 +1,20 @@
-FROM node:16.14.2
+FROM node:16.15.0
 
-#Vreate app directory
+# Create app directory
 WORKDIR /usr/src/app
 
-#Install dependencies
-#Wildcard for all packages in package.json and package-lock.json
+# Install depedencies
+# Wildcard for all packages in package.json and package-lock.json
 COPY package*.json ./
 
 RUN npm install
 
-#install dependencies fro production
-#Run npm ci --only=production
+# Install depedencies for production
+# RUN npm ci --only=production
 
-
-#Bundle app source
+# Bundle app source
 COPY . .
 
 EXPOSE 8080
 
-CMD ["node","src/server.js"]
-
-
-
-
+CMD ["node", "src/server.js"]

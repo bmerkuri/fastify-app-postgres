@@ -1,3 +1,5 @@
+'use strict';
+
 const vatCalculator  = require('../src/utilities/vatCalculator')
 
 describe("VAT calculator", ()=>{
